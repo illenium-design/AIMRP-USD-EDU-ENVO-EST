@@ -1,0 +1,60 @@
+[[[[ def parameters- a pass of dynamic values to specific steps or components within the orchestration or script. ]]]]
+
+
+# MaestroScript Example
+
+# Define orchestration for a payment processing scenario
+orchestra PaymentProcessingOrchestra {
+
+    # Define components
+    component PaymentGateway;
+    component OrderSystem;
+
+    # Define parameters
+    parameters {
+        orderId: string;
+        paymentAmount: decimal;
+        paymentMethod: string;
+    }
+
+    # Define orchestration steps
+    step RetrieveOrderDetails from OrderSystem {
+        query: "GET /orders/{orderId}";
+        parameters: {
+            orderId: "{orderId}";
+        }
+    }
+
+    step ProcessPayment with PaymentGateway {
+        method: POST;
+        endpoint: "https://payment.api/process";
+        payload: {
+            orderDetails: "{RetrieveOrderDetails.response}";
+            paymentAmount: "{paymentAmount}";
+            paymentMethod: "{paymentMethod}";
+        }
+    }
+
+    # Define error handling
+    on Error {
+        # Log error and notify administrators
+        log: "Error occurred during payment processing. Check logs for details.";
+        notify: "admin@example.com";
+    }
+
+    # Final step
+    finalize {
+        # Log successful payment processing
+        log: "Payment processing completed successfully.";
+    }
+}
+
+# Instantiate and execute the orchestra with specific parameters
+PaymentProcessingOrchestra.execute({
+    orderId: "12345",
+    paymentAmount: 49.99,
+    paymentMethod: "credit_card"
+});
+
+
+[[[[ The parameters block defines the expected parameters for the orchestration AKA script. ¹ The RetrieveOrderDetails step uses the orderId parameter to dynamically fetch order details. ² The ProcessPayment step incorporates parameters for the payment amount and method. ³ The orchestration is executed with specific parameter values in the execute call. This allows for flexibility, as you can customize the behavior of the orchestration/script/language by providing different values for these parameters/borders when executing it. ]]]]
