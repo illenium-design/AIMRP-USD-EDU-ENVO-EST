@@ -1,3 +1,6 @@
+Continuing with the concept, if you have access to a real quantum computer or a quantum simulator, you can run more complex algorithms. Here's an example of a quantum algorithm using Qiskit for a simple quantum teleportation:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,3 +50,6 @@
 
 </body>
 </html>
+```
+
+This example demonstrates the steps of quantum teleportation, a fundamental quantum algorithm. In this scenario, you'd typically run it on a quantum computer or simulator to observe the quantum state transfer. Keep in mind that this is still a simplified example, and real-world quantum algorithms can be much more intricate.
