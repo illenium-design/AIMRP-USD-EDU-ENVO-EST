@@ -1,0 +1,22 @@
+To use a personal URL for the Qiskit library instead of the public one, you'll need to host the Qiskit library file (main.js) on a server accessible by your application. Here are the general steps:
+
+1. **Host the Qiskit Library:**
+   - Upload the `main.js` file to a web server, a cloud storage service (like AWS S3, Google Cloud Storage, or GitHub), or your personal website.
+   - Ensure that the file is publicly accessible.
+
+2. **Replace the URL:**
+   - Replace the existing URL with the URL where you hosted the `main.js` file. If you're using a cloud storage service, it might provide you with a public URL for the file.
+
+For example, if you hosted the file on your personal website and it's accessible at `https://example.com/qiskit/main.js`, you would replace the URL in your HTML file like this:
+
+```html
+<!-- Replace this URL with your personal URL -->
+<script src="https://example.com/qiskit/main.js"></script>
+```
+
+3. **Test:**
+   - After making the changes, test your HTML file to ensure that it correctly loads the Qiskit library from your personal URL.
+
+Keep in mind that if you're hosting the Qiskit library on a server or platform that you control, you'll need to manage updates and versioning yourself. Using a content delivery network (CDN) or the official Qiskit CDN is often recommended for stability and convenience.
+
+Note: Make sure that you comply with the licensing terms of the Qiskit library and any other applicable licenses when hosting and distributing it.
